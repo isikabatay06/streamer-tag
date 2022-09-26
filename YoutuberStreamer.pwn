@@ -1,6 +1,6 @@
 /*
 		Youtuber & Streamer Tag
-		Kodlayan: Zoxy
+		Kodlayan: abatay
 
 */
 #pragma compat 1
@@ -10,11 +10,11 @@
 new bool:YoutuberStreamer[MAX_PLAYERS];
 new bool:YTDuty[MAX_PLAYERS];
 new Text3D:YTLabel[MAX_PLAYERS];
-#define YT_CHAT 0 // 1: Oyuncu chata birşey yazdığında başında Youtuber & Streamer tagı olur 0: Bir şey olmaz.
+#define YT_CHAT 0 // 1: Oyuncu chata birÃ¾ey yazdÃ½Ã°Ã½nda baÃ¾Ã½nda Youtuber & Streamer tagÃ½ olur 0: Bir Ã¾ey olmaz.
 public OnFilterScriptInit()
 {
 	print("\n--------------------------------------");
-	print(" Youtuber & Streamer sistemi yüklenmiştir. Kodlayan: Zoxy");
+	print(" Youtuber & Streamer sistemi yÃ¼klenmiÃ¾tir. Kodlayan: abatay");
 	print("--------------------------------------\n");
 	return 1;
 }
@@ -60,9 +60,9 @@ public OnPlayerText(playerid, text[])
 CMD:ytag(playerid, params[])
 {
 	new id;
-	if(!IsPlayerAdmin(playerid)) return SendClientMessage(playerid, -1, "{FF0000}[!]: {FFFFFF}Bu komutu kullanabilmek için RCON olmalısınız.");
+	if(!IsPlayerAdmin(playerid)) return SendClientMessage(playerid, -1, "{FF0000}[!]: {FFFFFF}Bu komutu kullanabilmek iÃ§in RCON olmalÃ½sÃ½nÃ½z.");
 	if(sscanf(params, "u", id)) return SendClientMessage(playerid, -1, "{0097F5}[!]: {FFFFFF}/ytag [ID/Isim]");
-	if(!IsPlayerConnected(id)) return SendClientMessage(playerid, -1, "{FF0000}[!]: Oyuncu oyunda değil!");
+	if(!IsPlayerConnected(id)) return SendClientMessage(playerid, -1, "{FF0000}[!]: Oyuncu oyunda deÃ°il!");
 	new str[124];
 	if(YoutuberStreamer[id] == true)
 	{
@@ -71,9 +71,9 @@ CMD:ytag(playerid, params[])
 	    Delete3DTextLabel(YTLabel[id]);
 	    format(str, sizeof(str), "YoutuberStreamer/%s.txt", getName(id));
 	    if(fexist(str)) fremove(str);
-	    format(str, sizeof(str), "{0097F5}[!]: {FFFFFF}%s adlı yetkili tarafından Youtuber & Streamer tagınız silindi.", getName(playerid));
+	    format(str, sizeof(str), "{0097F5}[!]: {FFFFFF}%s adlÃ½ yetkili tarafÃ½ndan Youtuber & Streamer tagÃ½nÃ½z silindi.", getName(playerid));
 	    SendClientMessage(id, -1, str);
-	    format(str, sizeof(str), "{0097F5}[!]: {FFFFFF}%s adlı kişinin Youtuber & Streamer tagını sildiniz.", getName(id));
+	    format(str, sizeof(str), "{0097F5}[!]: {FFFFFF}%s adlÃ½ kiÃ¾inin Youtuber & Streamer tagÃ½nÃ½ sildiniz.", getName(id));
 	    SendClientMessage(playerid, -1, str);
 	}
 	else
@@ -83,29 +83,29 @@ CMD:ytag(playerid, params[])
 	    Delete3DTextLabel(YTLabel[id]);
 	    format(str, sizeof(str), "YoutuberStreamer/%s.txt", getName(id));
 	    if(!fexist(str)) fcreate(str);
-	    format(str, sizeof(str), "{0097F5}[!]: {FFFFFF}%s adlı yetkili size Youtuber tagı verdi (/yduty ile aktif edebilirsiniz).", getName(playerid));
+	    format(str, sizeof(str), "{0097F5}[!]: {FFFFFF}%s adlÃ½ yetkili size Youtuber tagÃ½ verdi (/yduty ile aktif edebilirsiniz).", getName(playerid));
 	    SendClientMessage(id, -1, str);
-	    format(str, sizeof(str), "{0097F5}[!]: {FFFFFF}%s adlı kişiye Youtuber tagı verdiniz.", getName(id));
+	    format(str, sizeof(str), "{0097F5}[!]: {FFFFFF}%s adlÃ½ kiÃ¾iye Youtuber tagÃ½ verdiniz.", getName(id));
 	    SendClientMessage(playerid, -1, str);
 	}
 	return 1;
 }
 CMD:yduty(playerid)
 {
-	if(!IsPlayerSpawned(playerid)) return SendClientMessage(playerid, -1, "{FF0000}[!]: {FFFFFF}Spawn olmadan komut kullanamazsınız.");
+	if(!IsPlayerSpawned(playerid)) return SendClientMessage(playerid, -1, "{FF0000}[!]: {FFFFFF}Spawn olmadan komut kullanamazsÃ½nÃ½z.");
 	if(YoutuberStreamer[playerid] == false) return SendClientMessage(playerid, -1, "{FF0000}[!]: {FFFFFF}Yetkiniz yok.");
 	if(YTDuty[playerid] == false)
 	{
 	    YTDuty[playerid] = true;
 	    YTLabel[playerid] = Create3DTextLabel("Youtuber & Streamer", 0xFF0000FF, 0.0, 0.0, 0.0, 6.0, -1, 1);
 	    Attach3DTextLabelToPlayer(YTLabel[playerid], playerid, 0.0, 0.0, 0.4);
-	    SendClientMessage(playerid, -1, "{0097F5}[!]: {FFFFFF}Youtuber & Streamer tagınız {00FF4C}aktif.");
+	    SendClientMessage(playerid, -1, "{0097F5}[!]: {FFFFFF}Youtuber & Streamer tagÃ½nÃ½z {00FF4C}aktif.");
 	}
 	else
 	{
 	    YTDuty[playerid] = false;
 	    Delete3DTextLabel(YTLabel[playerid]);
-	    SendClientMessage(playerid, -1, "{0097F5}[!]: {FFFFFF}Youtuber & Streamer tagınız {FF0000}deaktif.");
+	    SendClientMessage(playerid, -1, "{0097F5}[!]: {FFFFFF}Youtuber & Streamer tagÃ½nÃ½z {FF0000}deaktif.");
 	}
 	return 1;
 }
